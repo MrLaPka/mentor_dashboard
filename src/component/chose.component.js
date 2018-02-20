@@ -17,12 +17,6 @@ const normalizedMentors = (choseOneMentor) => {
       }
     }
   } 
-/*    choseOneMentor.forEach((item, i, arr) => {
-    if (item == arr[i + 1]) {
-      arr.splice(i, 1);
-    }
-  });  */
-
   return choseOneMentor;
 }
 const choseMentors = normalizedMentors(choseOneMentor).map(item => {
@@ -44,10 +38,12 @@ const promiseOptions = inputValue =>
     setTimeout(() => {
       resolve(filterMentors(inputValue));
     }, 1000);
+
   });
   
 class Chose extends Component {
   render() {
+    console.log(filterMentors(inputValue));
     return (
       <AsyncSelect cacheOptions defaultOptions loadOptions={promiseOptions} className={s.chose}/>
     );
