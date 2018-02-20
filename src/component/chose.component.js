@@ -3,10 +3,32 @@ import s from "./app.component.css";
 import AsyncSelect from 'react-select/lib/Async';
 
 const json = require('./data.json');
-const choseMentors = Object.keys(json).map(item => {
+const choseOneMentor = Object.keys(json).map(item => {
+  return String(json[item].linkToMentorGitHub);
+}
+); 
+
+const normalizedMentors = (choseOneMentor) => {
+   for (let i = 0; i < choseOneMentor.length; i++){
+    for (let j = i + 1; j < choseOneMentor.length; j++){
+      if (choseOneMentor[i] === choseOneMentor[j]) {
+        choseOneMentor.splice(j, 1);
+        j--;
+      }
+    }
+  } 
+/*    choseOneMentor.forEach((item, i, arr) => {
+    if (item == arr[i + 1]) {
+      arr.splice(i, 1);
+    }
+  });  */
+
+  return choseOneMentor;
+}
+const choseMentors = normalizedMentors(choseOneMentor).map(item => {
   return Object({
-    values: String(json[item].linkToMentorGitHub).toLowerCase(),
-    label:  String(json[item].linkToMentorGitHub)
+    values: String(item).toLowerCase(),
+    label: String(item)
   });
 }
 ); 

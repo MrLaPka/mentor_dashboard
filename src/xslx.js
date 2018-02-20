@@ -327,7 +327,7 @@ for (let i = 0; i < obj.length; i++) {
      console.log(pairs[i]);
 }   */
 //console.log(obj2);
-const json = JSON.stringify(pairs, 0, 3);
+/* const json = JSON.stringify(pairs, 0, 3);
   fs.writeFile('./src/component/data.json', json, 'utf8', () => {
      console.log('writing is done!');
- });   
+ }); */   
