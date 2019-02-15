@@ -1,0 +1,12 @@
+.intro {
+    background-color: green;
+    border: 3px solid black;
+    table-layout: fixed;
+    border-spacing:0;
+    border-collapse:collapse;
+  }
+
+.cells{
+  border: 2px solid black;
+  width:200px;
+}
