@@ -1,12 +1,19 @@
 .intro {
-    background-color: green;
     border: 3px solid black;
     table-layout: fixed;
     border-spacing:0;
     border-collapse:collapse;
+    margin-top: 6em;
   }
 
 .cells{
   border: 2px solid black;
   width:200px;
+}
+
+.chose{
+  width: 16em;
+  height: 2em;
+  border-radius: 20%;
+  font-size: 1.2em;
 }

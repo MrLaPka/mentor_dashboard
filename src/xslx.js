@@ -177,14 +177,16 @@ const getMark = (sheet, currentRow) => {
     const filedMapping3 = {
         mark: 'F',
         task: 'D',
-        StudentGitHub: 'C'
+        StudentGitHub: 'C',
+        MentorGitHub: 'B'
 
     }
 
     const mark = {
         mark: sheet[filedMapping3.mark + currentRow].v,
         task: sheet[filedMapping3.task + currentRow].v,
-        StudentGitHub: sheet[filedMapping3.StudentGitHub + currentRow].v
+        StudentGitHub: sheet[filedMapping3.StudentGitHub + currentRow].v,
+        MentorGitHub:  sheet[filedMapping3.MentorGitHub + currentRow].v
     }
     return mark;
 
@@ -216,7 +218,7 @@ const marks = getMarks(marksFromFile.Sheets['Form Responses 1']);
          }
     }
  } */
-for (let i = 0; i < pairs.length; i++) {
+/*  for (let i = 0; i < pairs.length; i++) {
     for (let j = 0; j < marks.length; j++) {
         if ('https://github.com/' + String(pairs[i].StudentGitHub).toLowerCase() === String(marks[j].StudentGitHub).toLowerCase()){
             for (let k = 0; k < pairs[i].tasks.length; k++) {
@@ -228,8 +230,85 @@ for (let i = 0; i < pairs.length; i++) {
             }
 }
     }
+}  */
+  for (let i = 0; i < pairs.length; i++) {
+    for (let j = 0; j < marks.length; j++){  
+              if ('https://github.com/' + String(pairs[i].StudentGitHub).toLowerCase() === String(marks[j].StudentGitHub).toLowerCase() ||
+                  'https://github.com/' + String(pairs[i].StudentGitHub).toLowerCase() === String(marks[j].MentorGitHub).toLowerCase()) {
+                  for (let k = 0; k < pairs[i].tasks.length; k++) {
+                 if (String(pairs[i].tasks[k].task).replace(/\s+/g, '') === String(marks[j].task).replace(/\s+/g, '')) {
+                     pairs[i].tasks[k].mark = marks[j].mark;                    
+                     break;
+                      }
+                      if (!("mark" in pairs[i].tasks[k])) {
+                          pairs[i].tasks[k].mark = 0; 
+                      }
+                  } 
+        }
+    }
+    //console.log(pairs[i]);
+} 
+
+/* for (let i = 0; i < pairs.length; i++) {
+    console.log(pairs[i]);
+    }   */
+/* let obj = [];
+for (let i = 0; i < pairs.length; i++) {
+    obj[i] = pairs[i].StudentGitHub;
+} */
+//console.log(obj);
+
+/* let obj2 = [];
+let count = 0;
+for (let i = 0; i < obj.length; i++) {
+    for (let j = 0; j < marks.length; j++) {
+        if ('https://github.com/' + String(obj[i]).toLowerCase() === String(marks[j].StudentGitHub).toLowerCase() ||
+            'https://github.com/' + String(obj[i]).toLowerCase() === String(marks[j].MentorGitHub).toLowerCase()) {
+            obj2[count] = marks[j];
+             for (let i = 0; i < pairs[0].tasks.length; i++) {
+                if (String(pairs[i].tasks[i].task).replace(/\s+/g, '') === String(obj2[j].task).replace(/\s+/g, '')){
+
+                }
+            } 
+            count++;
+        }
+    }
+} */
+
+/* for (let i = 0; i < pairs[0].tasks.length; i++) {
+    for (let j = 0; j < obj2.length; j++) {
+        if (String(pairs[i].tasks[i].task).replace(/\s+/g, '') === String(obj2[j].task).replace(/\s+/g, '')) {
+            console.log(obj2[j].task);
+            obj2[j].status = pairs[i].tasks[i].status;
+             for (let k = 0; k < pairs[i].tasks.length; k++) {
+                pairs[i].tasks[k].task = obj2[j].task;
+                pairs[i].tasks[k].mark = obj2[j].mark;
+            } 
+        }
+        if (String(obj2[j].task).replace(/\s+/g, '') === 'Presentation') {
+            obj2.splice(j, 1);  
+        }
+    }
 }
-/*   const json = JSON.stringify(pairs, 0, 3);
- fs.writeFile('data.json', json, 'utf8', () => {
+ */
+/* for (let i = 0; i < pairs.length; i++) { 
+    pairs[i].tasks = {}; 
+} */
+
+/* for (let i = 0; i < pairs.length; i++) {
+     for (let j = 0; j < obj2.length; j++) {
+        if ('https://github.com/' + String(pairs[i].StudentGitHub).toLowerCase() === String(obj2[j].StudentGitHub).toLowerCase() ||
+            'https://github.com/' + String(pairs[i].StudentGitHub).toLowerCase() === String(obj2[j].MentorGitHub).toLowerCase()) {
+            pairs[i].tasks += obj2[j];
+        }
+    } 
+} */
+
+/*   for (let i = 0; i < pairs.length; i++) {
+     console.log(pairs[i]);
+}   */
+//console.log(obj2);
+        const json = JSON.stringify(pairs, 0, 3);
+ fs.writeFile('./src/component/data.json', json, 'utf8', () => {
      console.log('writing is done!');
- }); */
+ });      
