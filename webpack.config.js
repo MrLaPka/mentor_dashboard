@@ -7,7 +7,7 @@ module.exports = {
     filename: "./main.js"
   },
   devServer: {
-    contentBase: path.join(__dirname, "dist"),
+    contentBase: path.join(__dirname, "./"),
     compress: true,
     port: 9001,
     watchContentBase: true,
