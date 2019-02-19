@@ -98,7 +98,26 @@ console.log('results', results); */
 for (let i = 0; i < pairs.length;i++){
     for (let j = 0; j < mentors.length; j++) {
         if (mentors[j].name + ' ' + mentors[j].surname === pairs[i].interviewer) {
-            pairs[i].linkToMentorGitHub = mentors[j].linkToMentorGitHub;
+            pairs[i].linkToMentorGitHub = String(mentors[j].linkToMentorGitHub);
+            if (String(pairs[i].linkToMentorGitHub).indexOf('https://github.com/') != -1) {
+                pairs[i].linkToMentorGitHub = String(pairs[i].linkToMentorGitHub).replace('https://github.com/', '');   
+            }
+
+            else if (String(pairs[i].linkToMentorGitHub).indexOf('http://github.com/') != -1) {
+                pairs[i].linkToMentorGitHub = String(pairs[i].linkToMentorGitHub).replace('http://github.com/', '');  
+            }
+            
+            else if (String(pairs[i].linkToMentorGitHub).indexOf('https:/github.com/') != -1) {
+                pairs[i].linkToMentorGitHub = String(pairs[i].linkToMentorGitHub).replace('https:/github.com/', '');
+            }
+
+            else if (String(pairs[i].linkToMentorGitHub).indexOf('http:/github.com/') != -1) {
+                pairs[i].linkToMentorGitHub = String(pairs[i].linkToMentorGitHub).replace('https:/github.com/', '');
+            }
+
+            if (String(pairs[i].linkToMentorGitHub).indexOf('/') != -1) {
+                pairs[i].linkToMentorGitHub = String(pairs[i].linkToMentorGitHub).replace('/', '');
+            }
         }
     }   
 }
@@ -308,7 +327,7 @@ for (let i = 0; i < obj.length; i++) {
      console.log(pairs[i]);
 }   */
 //console.log(obj2);
-        const json = JSON.stringify(pairs, 0, 3);
- fs.writeFile('./src/component/data.json', json, 'utf8', () => {
+const json = JSON.stringify(pairs, 0, 3);
+  fs.writeFile('./src/component/data.json', json, 'utf8', () => {
      console.log('writing is done!');
- });      
+ });   
