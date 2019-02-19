@@ -4,7 +4,7 @@ module.exports = {
   entry: "./src/index.js",
   mode: "development",
   output: {
-    filename: "dist/main.js"
+    filename: "main.js"
   },
   devServer: {
     contentBase: path.join(__dirname, "./"),
