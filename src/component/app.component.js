@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import s from "./app.component.css";
+import Chose from "./chose.component";
 const json = require('./data.json');
+
 class MyComponent extends Component {
   render() {
      const color = (mark, status) => {
@@ -35,7 +37,7 @@ class MyComponent extends Component {
       </tr>
     ); 
     return(
-      <table className={s.intro}>
+      <table id = "mainTable" className={s.intro}>
         <tr>
         <td></td>
         {students}

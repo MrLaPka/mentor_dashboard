@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import s from "./app.component.css";
-import AsyncSelect from 'react-select/lib/Async';
-
+import Select from 'react-select';
 const json = require('./data.json');
 const choseOneMentor = Object.keys(json).map(item => {
   return String(json[item].linkToMentorGitHub);
@@ -27,25 +26,25 @@ const choseMentors = normalizedMentors(choseOneMentor).map(item => {
 }
 ); 
 
-const filterMentors = (inputValue) => {
-  return choseMentors.filter(i =>
-    i.label.toLowerCase().includes(inputValue.toLowerCase())
-  );
-};
-
-const promiseOptions = inputValue =>
-  new Promise(resolve => {
-    setTimeout(() => {
-      resolve(filterMentors(inputValue));
-    }, 1000);
-
-  });
-  
 class Chose extends Component {
+  state = {
+    selectedOption: null,
+  }
+  handleChange = (selectedOption) => {
+    this.setState({ selectedOption });
+    //console.log(`Option selected:`, selectedOption.values);
+  }
   render() {
-    console.log(filterMentors(inputValue));
+    const { selectedOption } = this.state;
+    if (this.state.selectedOption!== null)
+    console.log(`Option selected:`, this.state.selectedOption.label);
     return (
-      <AsyncSelect cacheOptions defaultOptions loadOptions={promiseOptions} className={s.chose}/>
+      <Select
+        value={selectedOption}
+        onChange={this.handleChange}
+        options={choseMentors}
+        className = {s.chose}
+      />
     );
   }
 }
