@@ -346,15 +346,31 @@ for (let i = 0; i < arrToStudentsWithTasks.length; i++) {
             if (String(arrToStudentsWithTasks[i].tasks[j].task).replace(/\s+/g, '') === String(arrToStudentsWithTasks[i].marks[k].task).replace(/\s+/g, '') ) {
                 arrToStudentsWithTasks[i].tasks[j].mark = arrToStudentsWithTasks[i].marks[k].mark;
             }
+            if (!("mark" in arrToStudentsWithTasks[i].tasks[j])) {
+                arrToStudentsWithTasks[i].tasks[j].mark = 0;
+            }
         }
     }
 }
 
-/* for (let i = 0; i < arrToStudentsWithTasks.length; i++) {
-       console.log(arrToStudentsWithTasks[i]);
-} */   
+/* for (let i = 0; i < pairs.length; i++) {
+    console.log(pairs[i].StudentGitHub);
+}   */   
 
-pairs = [...count, ...arrToStudentsWithTasks];
+ for (let i = 0; i < pairs.length; i++) {
+    for (let j = 0; j < count.length;j++) {
+        if (String(pairs[i].StudentGitHub).toLowerCase() === String(count[j].StudentGitHub).toLowerCase()) {
+            pairs[i] = count[j];
+        }
+       
+    }
+    for (let j = 0; j < arrToStudentsWithTasks.length; j++) {
+        if (String(pairs[i].StudentGitHub).toLowerCase() === String(arrToStudentsWithTasks[j].StudentGitHub).toLowerCase()) {
+            pairs[i] = arrToStudentsWithTasks[j];
+        }
+      
+    }
+} 
 for (let i = 0; i < pairs.length; i++) {
     delete pairs[i].marks;
 }  
@@ -401,9 +417,9 @@ for (let i = 0; i < obj.length; i++) {
     }
 }
  */
-  for (let i = 0; i < pairs.length; i++) { 
+   for (let i = 0; i < pairs.length; i++) { 
     console.log(pairs[i]); 
-}  
+}   
 
 /* for (let i = 0; i < pairs.length; i++) {
      for (let j = 0; j < obj2.length; j++) {
@@ -418,7 +434,7 @@ for (let i = 0; i < obj.length; i++) {
 }   */      
 
 //console.log(obj2);
-   const json = JSON.stringify(pairs, 0, 3);
+    const json = JSON.stringify(pairs, 0, 3);
   fs.writeFile('./src/component/data.json', json, 'utf8', () => {
      console.log('writing is done!');
- });     
+ });      
