@@ -36,16 +36,32 @@ class Chose extends Component {
   }
   render() {
     const { selectedOption } = this.state;
-    if (this.state.selectedOption!== null)
-    console.log(`Option selected:`, this.state.selectedOption.label);
-    return (
-      <Select
-        value={selectedOption}
-        onChange={this.handleChange}
-        options={choseMentors}
-        className = {s.chose}
-      />
-    );
+    if (this.state.selectedOption !== null) {
+      localStorage.clear();
+      localStorage.setItem('mentor', this.state.selectedOption.label);
+    }
+    if (localStorage.length !==0) {
+      return (
+        <Select
+          value={{
+            values: String(localStorage.getItem('mentor').toLowerCase()),
+            label: String(localStorage.getItem('mentor'))}}
+          onChange={this.handleChange}
+          options={choseMentors}
+          className={s.chose}
+        />
+      ); 
+    }
+    
+      return (
+        <Select
+          value={selectedOption}
+          onChange={this.handleChange}
+          options={choseMentors}
+          className={s.chose}
+        />
+      );
+    
   }
 }
 export default Chose;

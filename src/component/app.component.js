@@ -4,6 +4,11 @@ import Chose from "./chose.component";
 const json = require('./data.json');
 
 class MyComponent extends Component {
+/*   constructor(props) {
+    super(props);
+    this.state = { welcome: "Добро пожаловать на сайт!" };
+  } */
+
   render() {
      const color = (mark, status) => {
        if (mark !== 0)
