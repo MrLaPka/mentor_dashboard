@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha ./src/test.js",
     "dev": "webpack-dev-server",
     "start": "webpack",
     "process": "node ./src/xslx.js"
@@ -15,7 +15,9 @@
     "@babel/plugin-proposal-class-properties": "^7.3.3",
     "@types/react-bootstrap-table": "^4.3.7",
     "babel-preset-env": "^1.7.0",
+    "chai": "^4.2.0",
     "json-loader": "^0.5.7",
+    "mocha": "^6.0.1",
     "react": "^16.7.0",
     "react-boilerplate": "^0.2.0",
     "react-bootstrap-table": "^4.3.1",

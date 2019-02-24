@@ -54,7 +54,7 @@ const getPair = (sheet, currentRow) => {
 
 };
 
-const getPairs = sheet => {
+ const getPairs = sheet => {
     let count = 2;
     const rows = [];
     while (sheet[`A${count}`]) {
@@ -66,8 +66,8 @@ const getPairs = sheet => {
         return getPair(sheet, row)
     });
 };
-let pairs = getPairs(mentorScore.Sheets['pairs']);
 
+let pairs = getPairs(mentorScore.Sheets['pairs']);
 
 for (let i = 0; i < pairs.length;i++){
     for (let j = 0; j < mentors.length; j++) {
@@ -135,8 +135,14 @@ const getTasks = sheet => {
         return getTask(sheet, row)
     });
 };
-const tasks = getTasks(tasksFromFile.Sheets['Sheet1']);
 
+const tasks = getTasks(tasksFromFile.Sheets['Sheet1']);
+module.exports = { getTasks };
+/* console.log(tasks);
+const json = JSON.stringify(tasks, 0, 3);
+fs.writeFile('./src/data.json', json, 'utf8', () => {
+    console.log('writing is done!');
+}); */
 for (let i = 0; i < pairs.length; i++) {
     pairs[i].tasks = tasks;
 }
@@ -243,7 +249,7 @@ for (let i = 0; i < pairs.length; i++) {
     delete pairs[i].marks;
 }  
 
-     const json = JSON.stringify(pairs, 0, 3);
+      const json = JSON.stringify(pairs, 0, 3);
   fs.writeFile('./src/component/data.json', json, 'utf8', () => {
      console.log('writing is done!');
- });      
+ });       
