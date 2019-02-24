@@ -1,4 +1,4 @@
-.intro {
+/* .intro {
     border: 3px solid black;
     table-layout: fixed;
     border-spacing:0;
@@ -9,11 +9,110 @@
 .cells{
   border: 2px solid black;
   width:200px;
+} */
+
+.mentors{
+  font-family: Lobster, cursive;
+  font-size:2em;
+  margin:auto;
+  width:5em;
+  color: #808000;
 }
 
 .chose{
+  margin: auto;
   width: 16em;
   height: 2em;
   border-radius: 5%;
   font-size: 1.2em;
+}
+
+
+a {
+  text-decoration: none;
+  display: inline-block;
+  letter-spacing: 1px;
+  margin: 0 20px;
+  font-size: 1em;
+  font-family: 'Fredoka One', cursive;
+  transition: .3s ease-in-out;
+}
+
+.link {
+  color: #92B8C5;
+  text-shadow: 1px 1px 1px #555555;
+}
+.link:hover {
+  position: relative;
+  top: 2px;
+  left: 2px;
+}
+
+table {
+margin: auto;
+margin-top: 3em;
+border-spacing: 0;
+empty-cells: hide;
+}
+
+td {
+background: rgb(43, 38, 26);
+padding: 10px 20px;
+text-align: center;
+border-bottom: 1px solid #F4EEE8;
+transition: all 0.5s linear;
+color: #92B8C5;
+text-shadow: 1px 1px 1px #555555;
+font-family: 'Fredoka One', cursive;
+}
+
+td:first-child {
+text-align: left;
+color: #3D3511;
+font-weight: bold;
+}
+
+th {
+padding: 10px 20px;
+color: #3D3511;
+border-bottom: 1px solid #F4EEE8;
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+}
+
+th:nth-child(even)  {
+background: #F6D27E;
+}
+th:nth-child(odd)  {
+background: #D1C7BF;
+}
+
+tr:hover td{
+background: #D1C7BF;
+font-weight: bold;
+}
+
+.tooltip {
+	border-bottom: 1px dotted #0077AA;
+	cursor: help;
+}
+
+.tooltip::after {
+	background: rgba(0, 0, 0, 0.8);
+	border-radius: 8px 8px 8px 0px;
+	box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+	color: #FFF;
+	content: attr(data-tooltip); /* Главная часть кода, определяющая содержимое всплывающей подсказки */
+	margin-top: -24px;
+	opacity: 0; /* Наш элемент прозрачен... */
+	padding: 3px 7px;
+	position: absolute;
+	visibility: hidden; /* ...и скрыт. */
+			
+	transition: all 0.4s ease-in-out; /* Добавить плавности по вкусу */
+}
+		
+.tooltip:hover::after {
+	opacity: 1; /* Показываем его */
+	visibility: visible;
 }

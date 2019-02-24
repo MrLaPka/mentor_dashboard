@@ -37,14 +37,34 @@ class Table extends Component {
         }
       }
     }
+
+    const tooltip = (mark, status) => {
+      if (mark !== 0)
+        return "Checked";
+      else if (mark === 0) {
+        if (String(status) === "Checked") {
+          return "Checked";
+        }
+        else if (String(status) === "Checking") {
+          return "Checking";
+        }
+        else if (String(status) === "In Progress") {
+          return "In Progress";
+        }
+        else if (String(status) === "ToDo") {
+          return "ToDo";
+        }
+      }
+    }
+
       const mentorStudents = (mentorGitHub) => {
         const students = json.filter(item => {
           return String(item.linkToMentorGitHub) === String(mentorGitHub)
         });
         return students.map(item => {
-          return <td className={s.cells}>
-            <a href={'https://github.com/' + String(item.StudentGitHub)} target= '_blank'>{item.StudentGitHub}</a>
-          </td>
+          return <th>
+            <a href={'https://github.com/' + String(item.StudentGitHub)} target='_blank' className={s.link}>{item.StudentGitHub}</a>
+          </th>
         });
     } 
 
@@ -54,11 +74,16 @@ class Table extends Component {
       }); 
       return Object.keys(studentMarks[0].tasks).map(item => {
         return <tr className={s.cells}>
-          <td>{studentMarks[0].tasks[item].task}</td>
+          <td>
+            <a href={String(studentMarks[0].tasks[item].link)} target='_blank' className={s.link}>
+              {studentMarks[0].tasks[item].task}
+            </a>
+          </td>
             {
             studentMarks.map((marks) => {
               return <td style={{ background: color(marks.tasks[item].mark, marks.tasks[item].status) }} className={s.cells}>
-                {marks.tasks[item].mark}
+                <span className = {s.tooltip} data-tooltip={tooltip(marks.tasks[item].mark, marks.tasks[item].status)}>{marks.tasks[item].mark}
+                </span>
               </td>
             })}
         </tr>
@@ -68,6 +93,7 @@ class Table extends Component {
     let { content } = this.state;
     if (content !== null) {
       return <div>
+        <div className={s.mentors}>Mentor:</div>
         <Chose value={content.label} handleChange={this.handleChange} />
         <table id="mainTable" className={s.intro}>
           <tr>
@@ -81,10 +107,11 @@ class Table extends Component {
     else if (content === null) {
       if (localStorage.length !== 0) {
         return <div>
+          <div className={s.mentors}>Mentor:</div>
           <Chose value={String(localStorage.getItem('mentor'))} handleChange={this.handleChange} />
           <table id="mainTable" className={s.intro}>
             <tr>
-              <td></td>
+              <th></th>
               {mentorStudents(String(localStorage.getItem('mentor')))}
             </tr>
             {tasks(String(localStorage.getItem('mentor')))}
@@ -93,6 +120,7 @@ class Table extends Component {
       }
       else {
         return <div>
+          <div className={s.mentors}>Mentor:</div>
           <Chose value={content} handleChange={this.handleChange} />
         </div>
       }
