@@ -224,56 +224,6 @@ const getMarks = sheet => {
     });
 };
 const marks = getMarks(marksFromFile.Sheets['Form Responses 1']);
-//console.log('marks', marks);
-/*  for (let i = 0; i < pairs.length; i++) {
-     for (let j = 0; j < marks.length; j++) {
-         if ('https://github.com/' + pairs[i].StudentGitHub === marks[j].StudentGitHub) {
-             for (let k = 0; k < pairs[i].tasks.length; k++) {
-                 if (pairs[i].tasks[k].task === marks[j].task || pairs[i].tasks[k].task + ' ' === marks[j].task) {
-                     pairs[i].tasks[k].mark = marks[j].mark;
-                     break;
-                 }
-             }
-         }
-    }
- } */
-/*  for (let i = 0; i < pairs.length; i++) {
-    for (let j = 0; j < marks.length; j++) {
-        if ('https://github.com/' + String(pairs[i].StudentGitHub).toLowerCase() === String(marks[j].StudentGitHub).toLowerCase()){
-            for (let k = 0; k < pairs[i].tasks.length; k++) {
-                if (String(pairs[i].tasks[k].task).replace(/\s+/g, '') === String(marks[j].task).replace(/\s+/g, '')) {
-                    pairs[i].tasks[k].mark = marks[j].mark;
-                    //console.log(pairs[i].tasks[k].mark);
-                    break;
-                }
-            }
-}
-    }
-}  */
-
-/* for (let i = 0; i < pairs.length; i++) {
-    console.log(pairs[i]);
-} */
-/* let count = 0;
-for (let j = 0; j < marks.length; j++) {
-    while (count < pairs.length) {
-        if ('https://github.com/' + String(pairs[count].StudentGitHub).toLowerCase() === String(marks[j].StudentGitHub).toLowerCase() ||
-            'https://github.com/' + String(pairs[count].StudentGitHub).toLowerCase() === String(marks[j].MentorGitHub).toLowerCase()) {
-            pairs[count].tasks[0].mark = marks[j].mark;
-                              for (let k = 0; k < pairs[i].tasks.length; k++) {
-                                if (String(pairs[i].tasks[k].task).replace(/\s+/g, '') === String(marks[j].task).replace(/\s+/g, '')) {;
-                                 pairs[i].tasks[k].mark = marks[j].mark;                    
-                                 break;
-                                  }
-                                  if (!("mark" in pairs[i].tasks[k])) {
-                                      pairs[i].tasks[k].mark = 0; 
-                                  }
-                              }  
-        }
-        count++;
-    }
-} */
-//
 let count = 0;
 let filtredMentors = [];
 for (let i = 0; i < pairs.length; i++) {
@@ -287,7 +237,6 @@ for (let i = 0; i < pairs.length; i++) {
     }
 }
 count = 0;
-const filtredStudents = [];
 for (let i = 0; i < pairs.length; i++) {
     pairs[i].marks = [];
     for (let j = 0; j < marks.length; j++) {
@@ -357,7 +306,7 @@ for (let i = 0; i < arrToStudentsWithTasks.length; i++) {
     console.log(pairs[i].StudentGitHub);
 }   */   
 
- for (let i = 0; i < pairs.length; i++) {
+/*  for (let i = 0; i < pairs.length; i++) {
     for (let j = 0; j < count.length;j++) {
         if (String(pairs[i].StudentGitHub).toLowerCase() === String(count[j].StudentGitHub).toLowerCase()) {
             pairs[i] = count[j];
@@ -370,7 +319,8 @@ for (let i = 0; i < arrToStudentsWithTasks.length; i++) {
         }
       
     }
-} 
+}  */
+pairs = [...arrToStudentsWithTasks, ...count];
 for (let i = 0; i < pairs.length; i++) {
     delete pairs[i].marks;
 }  
