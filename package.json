@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./src/test.js",
+    "test": "mocha ./src/testingDataIsEmpty.js",
     "dev": "webpack-dev-server",
     "start": "webpack",
     "process": "node ./src/xslx.js"
